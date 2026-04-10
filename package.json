@@ -1,0 +1,15 @@
+{
+  "name": "ai-job-application-optimizer",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run dev",
+    "build": "npm --prefix client run build",
+    "lint": "npm --prefix client run lint"
+  }
+}
