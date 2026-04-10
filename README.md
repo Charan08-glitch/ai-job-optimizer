@@ -79,6 +79,24 @@ This starts:
 - frontend on `http://localhost:5173`
 - backend on `http://localhost:5000`
 
+## Deploy For A Live Link
+
+The easiest way to get one public live link for this project is to deploy it on Render.
+
+1. Push this repo to GitHub
+2. Go to Render and create a new Blueprint or Web Service from the repo
+3. Render will use [render.yaml](/c:/Users/Admin/Desktop/React/my-app/render.yaml)
+4. Add your `GEMINI_API_KEY` in the Render environment settings
+5. Deploy
+
+After deploy, Render gives you a live URL like:
+
+```text
+https://ai-resume-optimizer.onrender.com
+```
+
+In production, Express serves the React build, so the frontend and backend run from the same domain.
+
 ## API Endpoint
 
 ### `POST /analyze`

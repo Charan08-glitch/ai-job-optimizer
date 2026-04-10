@@ -3,13 +3,18 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
 import multer from 'multer'
+import path from 'path'
 import pdfParse from 'pdf-parse'
+import { fileURLToPath } from 'url'
 import { z } from 'zod'
 
 dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 5000
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist')
 
 app.use(cors())
 app.use(express.json())
@@ -108,7 +113,7 @@ async function generateAnalysis(ai, resumeText, jobDescription) {
   throw lastError
 }
 
-app.get('/', (request, response) => {
+app.get('/api/health', (request, response) => {
   response.json({ message: 'AI Job Application Optimizer API is running.' })
 })
 
@@ -183,6 +188,15 @@ app.use((error, request, response, next) => {
 
   return next(error)
 })
+
+// In production we serve the built React app from the same Express server.
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(clientDistPath))
+
+  app.get(/^(?!\/analyze|\/api).*/, (request, response) => {
+    response.sendFile(path.join(clientDistPath, 'index.html'))
+  })
+}
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
