@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url'
 import { z } from 'zod'
 
 dotenv.config()
-
+console.log("FULL KEY:", process.env.GEMINI_API_KEY)
 const app = express()
 const port = process.env.PORT || 5000
 const __filename = fileURLToPath(import.meta.url)
@@ -197,6 +197,7 @@ if (process.env.NODE_ENV === 'production') {
     response.sendFile(path.join(clientDistPath, 'index.html'))
   })
 }
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
