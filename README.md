@@ -1,4 +1,4 @@
-# AI Job Application Optimizer
+# AI Job Application Optimizer with charan
 
 AI Job Application Optimizer is a beginner-friendly full-stack project that compares a resume PDF against a job description and returns an AI-powered fit report.
 
